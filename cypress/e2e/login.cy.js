@@ -47,7 +47,7 @@ it("Should adding a book to favorites", () => {
 });
 
 it("Should deleting a book favorites", () => {
-  // cy.viewport(360, 640);
+  cy.viewport(360, 640);
   cy.visit("/");
   cy.login("test@test.com", "test");
   cy.get("h4").click();
