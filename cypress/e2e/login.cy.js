@@ -25,32 +25,38 @@ it.skip("Should not login with empty password", () => {
     .should("be.false");
 });
 
-it.skip("Should adding a book by button", () => {
+beforeEach(() => {
+  cy.viewport(Cypress.env("viewportWidth"), Cypress.env("viewportHeight"));
   cy.visit("/");
   cy.login("test@test.com", "test");
-  cy.get(".p-0 > .btn").click();
-  cy.get("#title").type("Война миров");
-  cy.get("#description").type("Фантастика");
-  cy.get("#authors").type("Айзек Азимов");
-  cy.contains("Submit").click();
-  cy.contains("Война миров").should("be.visible");
+  cy.contains("Добро пожаловать").should("be.visible");
 });
+describe("When user add the books", () => {
+  it("Should adding a book by button", () => {
+    // cy.visit("/");
+    // cy.login("test@test.com", "test");
+    cy.get(".p-0 > .btn").click();
+    cy.get("#title").type("Война миров");
+    cy.get("#description").type("Фантастика");
+    cy.get("#authors").type("Айзек Азимов");
+    cy.contains("Submit").click();
+    cy.contains("Война миров").should("be.visible");
+  });
+  it("Should adding a book to favorites", () => {
+    // cy.visit("/");
+    // cy.login("test@test.com", "test");
+    cy.contains("Война миров").contains("Add to favorite").click();
+    cy.contains("Favorites").click();
+    cy.contains("Война миров").should("be.visible");
+  });
 
-it("Should adding a book to favorites", () => {
-  cy.visit("/");
-  cy.login("test@test.com", "test");
-  cy.get(
-    '[href="book/c8147766-4fae-4f4c-8337-0a792e94651c"] > .h-100 > .card-footer > .btn'
-  ).click();
-  cy.get("h4").click();
-  cy.contains("Война миров").should("be.visible");
-});
-
-it("Should deleting a book favorites", () => {
-  // cy.viewport(360, 640);
-  cy.visit("/");
-  cy.login("test@test.com", "test");
-  cy.get("h4").click();
-  cy.get(".card-footer > .btn").click();
-  cy.contains("Please add some book to favorit").should("be.visible");
+  it("Should deleting a book favorites", () => {
+    // cy.viewport(360, 640);
+    // cy.visit("/");
+    // cy.login("test@test.com", "test");
+    cy.contains("Books list").click();
+    cy.contains("Favorites").click();
+    cy.contains("Война миров").contains("Delete from favorite").click();
+    cy.contains("Война миров").should("not.exist");
+  });
 });
