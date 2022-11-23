@@ -26,7 +26,7 @@ it.skip("Should not login with empty password", () => {
 });
 
 beforeEach(() => {
-  cy.viewport(Cypress.env("viewportWidth"), Cypress.env("viewportHeight"));
+  // cy.viewport(Cypress.env("viewportWidth"), Cypress.env("viewportHeight"));
   cy.visit("/");
   cy.login("test@test.com", "test");
   cy.contains("Добро пожаловать").should("be.visible");

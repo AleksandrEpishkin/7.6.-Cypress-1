@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "ChromeHeadless": "npx cypress run --browser chrome --headless",
-    "ChromeMobile": "npx cypress run --browser chrome --headed --config-file cypress.env.json",
+    "ChromeMobile": "npx cypress run --browser chrome --headed --config-file cypress.env.js",
     "ElectronHeadless": "npx cypress run --browser electron --headless",
-    "ElectronMobile": "npx cypress run --browser electron --headed --config-file cypress.env.json",
+    "ElectronMobile": "npx cypress run --browser electron --headed --config-file cypress.env.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
